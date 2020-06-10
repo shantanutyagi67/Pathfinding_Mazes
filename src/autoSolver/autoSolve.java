@@ -29,7 +29,6 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 	 */
 	private static final long serialVersionUID = 1L;
 //this uses DFS to generate a randomised maze
-//maze does not have walls, it is tilled instead
 	autoSolve(){
 		addKeyListener(this);
 		setFocusable(true);
