@@ -25,3 +25,4 @@ path shown and in case of autoSolver, wont reset the player back to the original
 3. needs some thought to make it an interesting pvp game.
 4. customisation feature to allow users to select the start and end positions after starting every new game.
 5. displaying arrows for direction instead of circles
+6. add a tree datatype for generated maze to make many operaions and functionality easier to implement.
