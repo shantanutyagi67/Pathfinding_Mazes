@@ -27,5 +27,4 @@ path shown and in case of autoSolver, wont reset the player back to the original
 5. displaying arrows for direction instead of circles --- DONE ---
 <<<<<<< HEAD
 6. add a tree datatype for generated maze to make many operaions and functionality easier to implement.
-=======
->>>>>>> 1599e1c363240b3da96df66d7aec639028a0ad7a
+
