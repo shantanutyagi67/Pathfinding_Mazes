@@ -1,8 +1,5 @@
 # Pathfinding_Mazes
-<hr>
-<applet code="src\mazeSolver\solve.java" width="320" height="120">
-</applet>
-<hr>
+
 There are no locks in the maze, the maze has no disconnected components which means every block can be reached
 from every other block via a valid path
 1. change the size variable to make the square maze bigger or smaller
