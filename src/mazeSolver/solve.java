@@ -245,7 +245,7 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 		}
 		if(solution) {
 			g2D.setColor(Color.RED);
-			g2D.setStroke(new BasicStroke((float) (15.000/size)));
+			g2D.setStroke(new BasicStroke((float) (30.000/size)));
 			//draw circles for solution
 //			for(int k=0;k<pathI.size();k++) {
 //				g2D.fill(new Ellipse2D.Double((pathJ.get(k))*thick+thick/4+thick/8,(pathI.get(k))*thick+thick/4+thick/8,thick/4,thick/4));
