@@ -30,9 +30,6 @@ class Player{
 }
 
 public class solve extends JComponent implements Runnable, KeyListener, MouseListener{
-/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 //this uses DFS to generate a randomised maze
 //maze does not have walls, it is tilled instead
@@ -75,10 +72,10 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 			maze.add(new Vector<Vector<Integer>>(size));
 			for(int j=0;j<size;j++) {
 				maze.get(i).add(new Vector<Integer>());
-				maze.get(i).get(j).add(1);//N wall
-				maze.get(i).get(j).add(1);//S wall
-				maze.get(i).get(j).add(1);//E wall
-				maze.get(i).get(j).add(1);//W wall
+				maze.get(i).get(j).add(1);//N wall / top wall
+				maze.get(i).get(j).add(1);//S wall / bottom wall
+				maze.get(i).get(j).add(1);//E wall / right wall
+				maze.get(i).get(j).add(1);//W wall / left wall
 			}
 		}
 		for(int i=0;i<size;i++) {//Neighbors of each cell (2-4 values depending on corner, edge, middle cell)
@@ -166,7 +163,9 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 				pathI.clear();
 				pathJ.clear();
 				pathI.addAll(stackI);
+				pathI.add(size-1);
 				pathJ.addAll(stackJ);
+				pathJ.add(size-1);
 				System.out.println(pathI);
 				System.out.println(pathJ);
 			}
@@ -246,8 +245,22 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 		}
 		if(solution) {
 			g2D.setColor(Color.RED);
-			for(int i=0;i<pathI.size();i++) {
-				g2D.fill(new Ellipse2D.Double((pathJ.get(i))*thick+thick/4+thick/8,(pathI.get(i))*thick+thick/4+thick/8,thick/4,thick/4));
+			g2D.setStroke(new BasicStroke((float) (15.000/size)));
+			//draw circles for solution
+//			for(int k=0;k<pathI.size();k++) {
+//				g2D.fill(new Ellipse2D.Double((pathJ.get(k))*thick+thick/4+thick/8,(pathI.get(k))*thick+thick/4+thick/8,thick/4,thick/4));
+//			}
+			//draw arrows for solution
+			for(int k=0;k<pathI.size()-1;k++) {
+				//this needs to be done because a cell might have multiple walls removed when only one direction is the solution path
+				if(maze.get(pathI.get(k)).get(pathJ.get(k)).get(3)==0 && pathJ.get(k+1)==pathJ.get(k)-1) // check if current path has no left wall and the left neighbour is the next cell in solution path
+					leftArrow(g2D,pathJ.get(k),pathI.get(k));
+				else if(maze.get(pathI.get(k)).get(pathJ.get(k)).get(2)==0 && pathJ.get(k+1)==pathJ.get(k)+1) // check if current path has no right wall and the right neighbour is the next cell in solution path
+					rightArrow(g2D,pathJ.get(k),pathI.get(k));
+				else if(maze.get(pathI.get(k)).get(pathJ.get(k)).get(0)==0 && pathI.get(k+1)==pathI.get(k)-1) // check if current path has no top wall and the top neighbour is the next cell in solution path
+					upArrow(g2D,pathJ.get(k),pathI.get(k));
+				else if(maze.get(pathI.get(k)).get(pathJ.get(k)).get(1)==0 && pathI.get(k+1)==pathI.get(k)+1) // check if current path has no bottom wall and the down neighbour is the next cell in solution path
+					downArrow(g2D,pathJ.get(k),pathI.get(k));
 			}
 		}
 		//g2D.setStroke(new BasicStroke(4f));
@@ -265,6 +278,18 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 		//run();
 		
 		repaint();
+	}
+	private void downArrow(Graphics2D g2D, int x, int y) {
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick/2.000, y*thick + thick + thick/2.000));
+	}
+	private void upArrow(Graphics2D g2D, int x, int y) {
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick/2.000, y*thick - thick + thick/2.000));
+	}
+	private void rightArrow(Graphics2D g2D, int x, int y) {
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick + thick/2.000, y*thick + thick/2.000));
+	}
+	private void leftArrow(Graphics2D g2D, int x, int y) {
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick - thick + thick/2.000, y*thick + thick/2.000));
 	}
 	@Override
 	public void run() {

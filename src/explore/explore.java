@@ -22,9 +22,7 @@ class Player{
 }
 
 public class explore extends JComponent implements Runnable, KeyListener, MouseListener{
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 //this uses DFS to generate a randomised maze
 //maze does not have walls, it is tilled instead
@@ -217,11 +215,12 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
 		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8,p1.y*thick+thick/8,3*thick/4,3*thick/4));
 		g2D.setFont(new Font("TimesRoman", Font.BOLD, 20));
 		g2D.drawString("Enter = RESET", 0, -10);
-//		if(end) {
-//			g2D.setColor(Color.GREEN);
-//			g2D.setFont(new Font("TimesRoman", Font.BOLD, 20));
-//			g2D.drawString("COMPLETE", (int)(size*thick/2+185), -10);
-//		}
+		//end = false;
+		if(end) {
+			g2D.setColor(Color.GREEN);
+			g2D.setFont(new Font("TimesRoman", Font.BOLD, 20));
+			g2D.drawString("COMPLETE", (int)(size*thick/2+185), -10);
+		}
 		//run();
 		
 		repaint();
@@ -237,7 +236,7 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//if(!end) {
+		if(!end) {
 			if (e.getKeyCode()==KeyEvent.VK_UP && p1.y>0 && maze.get(p1.y).get(p1.x).get(0)!=1) {// && maze.get(p1.y-1).get(p1.x).get(1)!=1) {
         		p1.y-=1;
         	}
@@ -262,7 +261,7 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
         	if (e.getKeyCode()==KeyEvent.VK_A && p2.x>0 && maze.get(p2.y).get(p2.x).get(3)!=1) {// && maze.get(p1.y).get(p1.x-1).get(2)!=1) {
         		p2.x-=1;
         	}
-		//}
+		}
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 			maze.clear();
 			visited.clear();
@@ -275,10 +274,10 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
 			p2.x=0;
 			p2.y=0;
 			start = false;
-			//end = false;
+			end = false;
 		}
-//		if(p1.x==size-1&&p1.y==size-1)
-//			end = true;
+		if(p1.x==p2.x&&p1.y==p2.y)
+			end = true;
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -297,22 +296,14 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}	
 }
