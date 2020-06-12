@@ -22,12 +22,9 @@ class Player{
 }
 
 public class maze extends JComponent implements Runnable, KeyListener, MouseListener{
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 //this uses DFS to generate a randomised maze
-//maze does not have walls, it is tilled instead
 	maze(){
 		addKeyListener(this);
 		setFocusable(true);
