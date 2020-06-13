@@ -73,7 +73,7 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(0,0,800,800);
 		frame.getContentPane().add(new explore());
-		frame.getContentPane().setBackground(Color.BLACK);
+		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.setVisible(true);
 	}
 	private static void Initialize() {
@@ -190,8 +190,8 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
 		g2D.setColor(Color.WHITE);
 		g2D.fill(new Rectangle2D.Double(0, 0, board, board));
 		g2D.setColor(Color.BLACK);
-		g2D.draw(new Rectangle2D.Double(0, 0, board, board));
-		g2D.setStroke(new BasicStroke(1f));
+		//g2D.draw(new Rectangle2D.Double(0, 0, board, board));
+		g2D.setStroke(new BasicStroke((float) (30.000/size)));
 		for(int i=0;i<size;i++) {
 			for(int j=0;j<size;j++) {
 				if(maze.get(i).get(j).get(0)==1) {//N
@@ -210,9 +210,9 @@ public class explore extends JComponent implements Runnable, KeyListener, MouseL
 		}
 		//g2D.setStroke(new BasicStroke(4f));
 		g2D.setColor(Color.GREEN);
-		g2D.fill(new Rectangle2D.Double(p2.x*thick+thick/8,p2.y*thick+thick/8,3*thick/4,3*thick/4));
+		g2D.fill(new Rectangle2D.Double(p2.x*thick+thick/8.00,p2.y*thick+thick/8.00,3*thick/4.00,3*thick/4.00));
 		g2D.setColor(Color.RED);
-		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8,p1.y*thick+thick/8,3*thick/4,3*thick/4));
+		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8.00,p1.y*thick+thick/8.00,3*thick/4.00,3*thick/4.00));
 		g2D.setFont(new Font("TimesRoman", Font.BOLD, 20));
 		g2D.drawString("Enter = RESET", 0, -10);
 		//end = false;

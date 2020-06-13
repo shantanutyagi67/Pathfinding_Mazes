@@ -30,7 +30,7 @@ public class maze extends JComponent implements Runnable, KeyListener, MouseList
 		setFocusable(true);
 	}
 	static JFrame frame = new JFrame("Maze 1");
-	static int size = 5;
+	static int size = 25;
 	Player p1 = new Player();
 	static Vector<Vector<Vector<Integer>>> maze = new Vector<Vector<Vector<Integer>>>();
 	static Vector<Vector<Vector<Integer>>> padosiI = new Vector<Vector<Vector<Integer>>>();
@@ -71,7 +71,7 @@ public class maze extends JComponent implements Runnable, KeyListener, MouseList
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(0,0,800,800);
 		frame.getContentPane().add(new maze());
-		frame.getContentPane().setBackground(Color.BLACK);
+		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.setVisible(true);
 	}
 	private static void Initialize() {
@@ -184,9 +184,9 @@ public class maze extends JComponent implements Runnable, KeyListener, MouseList
     	g2D.setRenderingHints(rh);
     	g2D.setStroke(new BasicStroke(4f));
 		g2D.setColor(Color.WHITE);
-		g2D.fill(new Rectangle2D.Double(0, 0, board, board));
+		g2D.fill(new Rectangle2D.Double(0, 0, size*thick, size*thick));
 		g2D.setColor(Color.BLACK);
-		g2D.draw(new Rectangle2D.Double(0, 0, board, board));
+		//g2D.draw(new Rectangle2D.Double(0, 0, size*thick, size*thick));
 		g2D.setStroke(new BasicStroke(1f));
 		for(int i=0;i<size;i++) {
 			for(int j=0;j<size;j++) {
@@ -206,9 +206,9 @@ public class maze extends JComponent implements Runnable, KeyListener, MouseList
 		}
 		//g2D.setStroke(new BasicStroke(4f));
 		g2D.setColor(Color.GREEN);
-		g2D.fill(new Rectangle2D.Double((size-1)*thick+thick/8,(size-1)*thick+thick/8,3*thick/4,3*thick/4));
+		g2D.fill(new Rectangle2D.Double((size-1)*thick+thick/8.000,(size-1)*thick+thick/8.000,3*thick/4.000,3*thick/4.000));
 		g2D.setColor(Color.RED);
-		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8,p1.y*thick+thick/8,3*thick/4,3*thick/4));
+		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8.000,p1.y*thick+thick/8.000,3*thick/4.000,3*thick/4.000));
 		g2D.setFont(new Font("TimesRoman", Font.BOLD, 20));
 		g2D.drawString("Enter = RESET", 0, -10);
 		if(end) {

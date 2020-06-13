@@ -34,7 +34,7 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 		setFocusable(true);
 	}
 	static JFrame frame = new JFrame("Maze 1");
-	static int size = 15;	//Value 4-100
+	static int size = 5;	//Value 4-100
 	Player p1 = new Player();
 	static Vector<Vector<Vector<Integer>>> maze = new Vector<Vector<Vector<Integer>>>();
 	static Vector<Vector<Vector<Integer>>> padosiI = new Vector<Vector<Vector<Integer>>>();
@@ -199,7 +199,7 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(0,0,800,800);
 		frame.getContentPane().add(new autoSolve());
-		frame.getContentPane().setBackground(Color.BLACK);
+		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.setVisible(true);
 	}
 	
@@ -221,7 +221,7 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 		g2D.setColor(Color.WHITE);
 		g2D.fill(new Rectangle2D.Double(0, 0, board, board));
 		g2D.setColor(Color.BLACK);
-		g2D.draw(new Rectangle2D.Double(0, 0, board, board));
+		//g2D.draw(new Rectangle2D.Double(0, 0, board, board));
 		g2D.setStroke(new BasicStroke((float) (30.00/size)));
 		for(int i=0;i<size;i++) {
 			for(int j=0;j<size;j++) {
@@ -240,7 +240,7 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 			}
 		}
 		g2D.setColor(Color.GREEN);
-		g2D.fill(new Rectangle2D.Double((size-1)*thick+thick/8,(size-1)*thick+thick/8,3*thick/4,3*thick/4));
+		g2D.fill(new Rectangle2D.Double((size-1)*thick+thick/8.00,(size-1)*thick+thick/8.00,3*thick/4.00,3*thick/4.00));
 		if(solution) {
 			g2D.setColor(Color.RED);
 			g2D.setStroke(new BasicStroke((float) (30.000/size)));
@@ -265,7 +265,7 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 //		g2D.setColor(Color.GREEN);
 //		g2D.fill(new Rectangle2D.Double((size-1)*thick+thick/8,(size-1)*thick+thick/8,3*thick/4,3*thick/4));
 		g2D.setColor(Color.RED);
-		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8,p1.y*thick+thick/8,3*thick/4,3*thick/4));
+		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8.00,p1.y*thick+thick/8.00,3*thick/4.00,3*thick/4.00));
 		g2D.setFont(new Font("TimesRoman", Font.BOLD, 20));
 		g2D.drawString("Enter = RESET", 0, -10);
 		if(end) {
@@ -309,7 +309,7 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(!end) {
+		if(!end && !solution) {
 			if (e.getKeyCode()==KeyEvent.VK_UP && p1.y>0 && maze.get(p1.y).get(p1.x).get(0)!=1) {// && maze.get(p1.y-1).get(p1.x).get(1)!=1) {
         		p1.y-=1;
         	}
