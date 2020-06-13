@@ -34,7 +34,7 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 		setFocusable(true);
 	}
 	static JFrame frame = new JFrame("Maze 1");
-	static int size = 5;	//Value 4-100
+	static int size = 15;	//Value 4-100
 	Player p1 = new Player();
 	static Vector<Vector<Vector<Integer>>> maze = new Vector<Vector<Vector<Integer>>>();
 	static Vector<Vector<Vector<Integer>>> padosiI = new Vector<Vector<Vector<Integer>>>();
@@ -288,15 +288,23 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 	}
 	private void downArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick/2.000, y*thick + thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick + thick/2.000, x*thick + thick/2.000 - thick/4.000, y*thick + thick + thick/2.000 - thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick + thick/2.000, x*thick + thick/2.000 + thick/4.000, y*thick + thick + thick/2.000 - thick/4.000));
 	}
 	private void upArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick/2.000, y*thick - thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick - thick + thick/2.000, x*thick + thick/2.000 - thick/4.000 , y*thick - thick + thick/2.000 + thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick - thick + thick/2.000, x*thick + thick/2.000 + thick/4.000 , y*thick - thick + thick/2.000 + thick/4.000));
 	}
 	private void rightArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick + thick/2.000, y*thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick + thick + thick/2.000, y*thick + thick/2.000, x*thick + thick + thick/2.000 - thick/4.000, y*thick + thick/2.000 - thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick + thick + thick/2.000, y*thick + thick/2.000, x*thick + thick + thick/2.000 - thick/4.000, y*thick + thick/2.000 + thick/4.000));
 	}
 	private void leftArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick - thick + thick/2.000, y*thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick - thick + thick/2.000, y*thick + thick/2.000, x*thick - thick + thick/2.000 + thick/4.000, y*thick + thick/2.000 + thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick - thick + thick/2.000, y*thick + thick/2.000, x*thick - thick + thick/2.000 + thick/4.000, y*thick + thick/2.000 - thick/4.000));
 	}
 	@Override
 	public void run() {

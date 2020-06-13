@@ -243,15 +243,19 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 				} 
 			}
 		}
+		//destination
+		g2D.setColor(Color.GREEN);
+		g2D.fill(new Rectangle2D.Double((size-1)*thick+thick/8.00,(size-1)*thick+thick/8.00,3*thick/4.00,3*thick/4.00));
 		if(solution) {
 			g2D.setColor(Color.RED);
-			g2D.setStroke(new BasicStroke((float) (30.000/size)));
+			g2D.setStroke(new BasicStroke((float) (20.000/size)));
 			//draw circles for solution
 //			for(int k=0;k<pathI.size();k++) {
 //				g2D.fill(new Ellipse2D.Double((pathJ.get(k))*thick+thick/4+thick/8,(pathI.get(k))*thick+thick/4+thick/8,thick/4,thick/4));
 //			}
 			//draw arrows for solution
 			for(int k=0;k<pathI.size()-1;k++) {
+				//g2D.setColor(Color.getHSBColor((float) (0.333*(Math.exp(k)-1)/(Math.exp(pathI.size())-1)), (float)1, (float)1));
 				//this needs to be done because a cell might have multiple walls removed when only one direction is the solution path
 				if(maze.get(pathI.get(k)).get(pathJ.get(k)).get(3)==0 && pathJ.get(k+1)==pathJ.get(k)-1) // check if current path has no left wall and the left neighbour is the next cell in solution path
 					leftArrow(g2D,pathJ.get(k),pathI.get(k));
@@ -264,8 +268,6 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 			}
 		}
 		//g2D.setStroke(new BasicStroke(4f));
-		g2D.setColor(Color.GREEN);
-		g2D.fill(new Rectangle2D.Double((size-1)*thick+thick/8.00,(size-1)*thick+thick/8.00,3*thick/4.00,3*thick/4.00));
 		g2D.setColor(Color.RED);
 		g2D.fill(new Rectangle2D.Double(p1.x*thick+thick/8.00,p1.y*thick+thick/8.00,3*thick/4.00,3*thick/4.00));
 		g2D.setFont(new Font("TimesRoman", Font.BOLD, 20));
@@ -281,15 +283,23 @@ public class solve extends JComponent implements Runnable, KeyListener, MouseLis
 	}
 	private void downArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick/2.000, y*thick + thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick + thick/2.000, x*thick + thick/2.000 - thick/4.000, y*thick + thick + thick/2.000 - thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick + thick/2.000, x*thick + thick/2.000 + thick/4.000, y*thick + thick + thick/2.000 - thick/4.000));
 	}
 	private void upArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick/2.000, y*thick - thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick - thick + thick/2.000, x*thick + thick/2.000 - thick/4.000 , y*thick - thick + thick/2.000 + thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick - thick + thick/2.000, x*thick + thick/2.000 + thick/4.000 , y*thick - thick + thick/2.000 + thick/4.000));
 	}
 	private void rightArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick + thick + thick/2.000, y*thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick + thick + thick/2.000, y*thick + thick/2.000, x*thick + thick + thick/2.000 - thick/4.000, y*thick + thick/2.000 - thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick + thick + thick/2.000, y*thick + thick/2.000, x*thick + thick + thick/2.000 - thick/4.000, y*thick + thick/2.000 + thick/4.000));
 	}
 	private void leftArrow(Graphics2D g2D, int x, int y) {
 		g2D.draw(new Line2D.Double(x*thick + thick/2.000, y*thick + thick/2.000, x*thick - thick + thick/2.000, y*thick + thick/2.000));
+		g2D.draw(new Line2D.Double(x*thick - thick + thick/2.000, y*thick + thick/2.000, x*thick - thick + thick/2.000 + thick/4.000, y*thick + thick/2.000 + thick/4.000));
+		g2D.draw(new Line2D.Double(x*thick - thick + thick/2.000, y*thick + thick/2.000, x*thick - thick + thick/2.000 + thick/4.000, y*thick + thick/2.000 - thick/4.000));
 	}
 	@Override
 	public void run() {
