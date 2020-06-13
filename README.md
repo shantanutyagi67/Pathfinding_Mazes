@@ -10,11 +10,11 @@ size 5-50 is preferable but the algorithm works for any size value
 5. displays game completed and you need to press enter to start new game
 
 autoSolver: space bar will reset the player to starting position, show the solution and player will move on its on
-till it reached the end position and stops. path is shown by simple dots which looks simplistic.
+till it reached the end position and stops. path is shown by arrows or dots.
 
 explore: it just lets you move the player and end position to explore the maze. can be also used as pvp.
 
-mazeSolver: it is like autosolver except the player does not move on its own. path is shown by connecting lines which looks cooler.
+mazeSolver: it is like autosolver except the player does not move on its own. path is shown by arrows/dots.
 
 mazes: it is the simplest version of mazeSolver in which solution path cannot be viewed.
 
