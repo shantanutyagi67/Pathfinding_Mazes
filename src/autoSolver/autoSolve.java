@@ -154,6 +154,8 @@ public class autoSolve extends JComponent implements Runnable, KeyListener, Mous
 //			else {
 //				solved.get(currentCellI).set(currentCellJ,false);
 //			}
+			//maze solving logic. solution is equal to the current stack values when we reach the destination node
+			//if we reach destination multiple times then select the shortest path by updating the solution list
 			if(currentCellI==size-1&&currentCellJ==size-1&&stackI.size()<min) {
 				min = stackI.size();
 				pathI.clear();
